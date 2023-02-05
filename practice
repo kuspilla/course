@@ -1,0 +1,58 @@
+package fix;
+
+
+
+      // Binary tree create PreOrder && PostOrder Travaesal
+import java.util.*;
+public class Bainary_Tree_Create {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+    Node temp = new Node(1);
+    System.out.println(temp.data);
+    int a[] = {1,2,3,4,5};
+    Node root =null;
+    for(int i=0;i<a.length; i++) 
+    	root = create(root,a[i]);
+    Node r1 = root;
+    System.out.print("PreOrder Traversal is :");
+    PreOrderprint(r1);
+   Node r2 = root;
+    System.out.print("\nPostOrder Traversal is :");
+    PostOrderTraversal(r2);
+	}
+	static void  PostOrderTraversal(Node root) {
+		if(root == null) return ;
+		 PostOrderTraversal(root.left);
+		System.out.print(root.data+" ");
+		 PostOrderTraversal(root.right);
+	}
+	static void PreOrderprint(Node root) {
+		if( root == null)
+			return;
+		System.out.print(root.data+" ");
+		PreOrderprint(root.left);
+		PreOrderprint(root.right);
+	}
+
+	static Node create(Node  root,int data) {
+		if( root == null) return new Node(data);
+		else
+			if( data < root.data)
+				root.left = create(root.left,data);
+			else
+				root.right = create(root.right,data);
+	return root;
+	}
+}
+
+
+class Node{
+	int data;
+	Node right;
+	Node left;
+	Node(int data){
+		this.data = data;
+		
+	}
+}
